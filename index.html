@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axi Fabricio Aguilera</title>
+  <meta name="description" content="Axi Fabricio Aguilera, Ph.D. student in Applied Mathematics and Statistics at Stony Brook University. Structure-preserving and parallel-in-time numerical methods for Hamiltonian systems.">
+  <meta name="author" content="Axi Fabricio Aguilera">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <nav class="topbar-inner" aria-label="Sections">
+    <a class="topbar-name" href="#top">Axi Fabricio Aguilera</a>
+    <ul>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#outside">Outside research</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/Axi_Aguilera_CV.pdf">CV</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="top">
+    <div class="hero-text">
+      <h1>Axi Fabricio Aguilera</h1>
+      <p class="role">Ph.D. student in Applied Mathematics and Statistics<br>Stony Brook University</p>
+
+      <p class="bio">
+        I develop numerical methods that stay faithful to the physics over very long simulations.
+        With Xiangmin Jiao and Charalampos Markakis, I am building parallel-in-time solvers for
+        structure-preserving integrators of Hamiltonian systems, motivated by the orbital dynamics
+        behind gravitational-wave models. I have also worked in quantitative finance at Wells Fargo
+        and took part in the JPMorganChase Quantitative Research Mentorship Program.
+      </p>
+
+      <ul class="links" aria-label="Profiles and contact">
+        <li><a href="#contact" class="js-mail" data-u="axi.aguilera" data-d="stonybrook.edu">Email</a></li>
+        <li><a href="assets/Axi_Aguilera_CV.pdf">CV (PDF)</a></li>
+        <li><a href="https://scholar.google.com/citations?user=Sgwvb94AAAAJ">Google Scholar</a></li>
+        <li><a href="https://www.researchgate.net/profile/Axi-Aguilera">ResearchGate</a></li>
+        <li><a href="https://orcid.org/0000-0003-3400-4774">ORCID</a></li>
+        <li><a href="https://github.com/axiaguilera">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/axiaguilera/">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <img class="portrait" src="assets/img/portrait.jpg" alt="Portrait of Axi Fabricio Aguilera" width="900" height="1125">
+  </section>
+
+  <!-- ============================ EDUCATION =========================== -->
+  <section class="block" id="education" aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <div class="block-body">
+      <dl class="timeline">
+        <dt>2024–2029</dt>
+        <dd><b>Ph.D., Applied Mathematics and Statistics</b>, Stony Brook University. Advised by Xiangmin Jiao and Charalampos Markakis. Expected May 2029.</dd>
+        <dt>2019–2022</dt>
+        <dd><b>M.S., Applied Mathematics</b>, University of Puerto Rico at Mayagüez. Thesis on conservative finite difference methods for nonlinear Schrödinger systems, advised by Paul Castillo.</dd>
+        <dt>2014–2017</dt>
+        <dd><b>B.S., Mathematics</b>, Universidad Pedagógica Nacional Francisco Morazán, Honduras.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============================ RESEARCH ============================ -->
+  <section class="block" id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
+    <div class="block-body">
+
+      <!-- ---------------- BSCI ---------------- -->
+      <article class="project">
+        <h3>Parallel-in-time integration that preserves geometry</h3>
+        <p>
+          Gravitational-wave detectors recognize merging black holes and neutron stars by comparing
+          their data with waveform models, and those models are built from solutions of the binary's
+          equations of motion. The Laser Interferometer Space Antenna (LISA), planned for launch in
+          2035, will follow some sources for months or years, over tens of thousands of orbits, so
+          the computed orbital phase has to stay accurate over that whole horizon.
+        </p>
+
+        <figure class="viz">
+          <svg class="lisa" viewBox="0 0 640 330" role="img" aria-labelledby="lisa-title lisa-desc">
+            <title id="lisa-title">Schematic of the LISA mission</title>
+            <desc id="lisa-desc">The Sun at the lower left, Earth on its orbit, and LISA's triangle of three spacecraft trailing Earth along the same orbit, with laser links along the sides of the triangle. Gravitational waves from a distant binary arrive from the upper left.</desc>
+            <defs>
+              <radialGradient id="sun-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#f2c14e"/>
+                <stop offset="70%" stop-color="#f2c14e" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#f2c14e" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="640" height="330" fill="#ffffff"/>
+            <!-- gravitational waves from a distant binary -->
+            <g fill="none" stroke="#6a3d9a" stroke-width="1.2">
+              <path d="M 196 52 A 30 30 0 0 1 226 82" opacity="0.55"/>
+              <path d="M 196 32 A 50 50 0 0 1 246 82" opacity="0.42"/>
+              <path d="M 196 12 A 70 70 0 0 1 266 82" opacity="0.3"/>
+              <path d="M 196 -8 A 90 90 0 0 1 286 82" opacity="0.2"/>
+            </g>
+            <circle cx="190" cy="86" r="4.5" fill="#1c2433"/>
+            <circle cx="202" cy="78" r="3" fill="#1c2433"/>
+            <text x="150" y="122" class="svg-label">Distant binary</text>
+            <!-- Earth orbit, centred on the Sun -->
+            <path d="M 580 330 A 520 520 0 0 0 461.5 0" fill="none" stroke="#b9c1cd" stroke-width="1.2" stroke-dasharray="5 5"/>
+            <!-- Sun -->
+            <circle cx="60" cy="330" r="70" fill="url(#sun-glow)"/>
+            <circle cx="60" cy="330" r="26" fill="#f2c14e"/>
+            <text x="98" y="318" class="svg-label">Sun</text>
+            <!-- Earth -->
+            <circle cx="501" cy="54" r="7" fill="#2f6db3"/>
+            <text x="514" y="50" class="svg-label">Earth</text>
+            <!-- LISA triangle, trailing Earth -->
+            <g>
+              <polygon points="568.6,187.9 539.2,238.9 598.0,238.9" fill="#6a3d9a" fill-opacity="0.08" stroke="#6a3d9a" stroke-width="1.6"/>
+              <circle cx="568.6" cy="187.9" r="4.5" fill="#1c2433"/>
+              <circle cx="539.2" cy="238.9" r="4.5" fill="#1c2433"/>
+              <circle cx="598.0" cy="238.9" r="4.5" fill="#1c2433"/>
+            </g>
+            <text x="528" y="214" class="svg-label" text-anchor="end">LISA</text>
+            <text x="630" y="272" class="svg-note" text-anchor="end">Three spacecraft, 2.5 million km apart,</text>
+            <text x="630" y="290" class="svg-note" text-anchor="end">trailing Earth by about 20 degrees</text>
+            <text x="630" y="318" class="svg-note" text-anchor="end">Not to scale</text>
+          </svg>
+          <figcaption>
+            LISA will be a triangle of three spacecraft that exchange laser beams across arms of
+            2.5 million km and follow Earth around the Sun. A passing gravitational wave changes the
+            arm lengths by a tiny amount.
+          </figcaption>
+        </figure>
+
+        <p>
+          The orbits obey Hamiltonian equations. Integrators that respect the geometry of Hamiltonian
+          flow, namely time-symmetric and symplectic methods, keep energy errors bounded instead of
+          letting them drift. For general Hamiltonians, however, the high-order methods are implicit
+          and strictly sequential: step <i>n</i>+1 waits for step <i>n</i>.
+        </p>
+
+        <figure class="viz">
+          <div class="twobody">
+            <canvas id="twobody-canvas" role="img" aria-label="Two bodies orbiting their common centre of mass."></canvas>
+            <div class="twobody-controls" role="group" aria-label="Choose an orbit">
+              <button type="button" data-orbit="circular" aria-pressed="false">Circular</button>
+              <button type="button" data-orbit="elliptic" aria-pressed="true">Elliptic</button>
+              <button type="button" data-orbit="hyperbolic" aria-pressed="false">Hyperbolic</button>
+            </div>
+          </div>
+          <figcaption>
+            <span id="twobody-readout">Elliptic orbit.</span>
+            Two bodies with mass ratio 0.45 move about their centre of mass (cross) under Newtonian
+            gravity, integrated live in your browser with the symplectic leapfrog method. The
+            post-Newtonian models in my research add relativistic corrections to this problem.
+          </figcaption>
+        </figure>
+
+        <p>
+          My doctoral work asks whether many time steps can be computed at once without giving up
+          that structure. <em>Batched self-consistent iteration</em> (BSCI) guesses a whole block of
+          steps, recomputes every step from the guess independently of the others, and reassembles
+          the trajectory with a prefix sum, the same operation that adds a list of numbers in
+          logarithmic depth on a parallel machine. At exact convergence it reproduces the sequential
+          Gauss–Legendre or Hermite integrator, so it inherits time symmetry and, for Gauss–Legendre,
+          symplecticity. We showed that batching keeps the asymptotic contraction rate of the
+          sequential solver, and we designed a Hermite-curve initializer so that, at fine steps, a
+          single sweep often suffices. On post-Newtonian two-body Hamiltonians, our C++
+          implementation reaches peak single-core speedups between 2.90× and 6.23× over sequential
+          integrators of the same family and order.
+        </p>
+
+        <figure class="viz">
+          <div class="figure-panel">
+            <img class="legend" src="assets/img/research/legend.svg" alt="Legend: BSCI-GL4 in purple, RK4 in red.">
+            <div class="pair">
+              <img src="assets/img/research/energy-error.svg" alt="Energy error over 100,000 orbits. RK4 drifts steadily while Gauss–Legendre with BSCI stays bounded.">
+              <img src="assets/img/research/phase-error.svg" alt="Phase error over 100,000 orbits. RK4 crosses one radian after about 5,200 orbits; Gauss–Legendre with BSCI ends at 0.24 radians.">
+            </div>
+          </div>
+          <figcaption>
+            Energy error (left) and phase error (right) on a circular fourth-order post-Newtonian
+            orbit over 10<sup>5</sup> orbits, at comparable computing cost. Fourth-order Gauss–Legendre
+            computed with BSCI keeps the phase error below a quarter radian; RK4 passes one radian
+            after about 5,200 orbits.
+          </figcaption>
+        </figure>
+      </article>
+
+      <!-- ---------------- NLS ---------------- -->
+      <article class="project">
+        <h3>Conservative schemes for nonlinear Schrödinger systems</h3>
+        <p>
+          Coupled nonlinear Schrödinger and Gross–Pitaevskii equations describe light pulses in
+          optical fibers and Bose–Einstein condensates. Their solutions conserve the mass of each
+          component and a Hamiltonian, and they support solitons, localized waves that keep their
+          shape as they travel. When solitons collide, the coupling between components decides
+          whether they pass through each other unchanged or exchange mass and radiate.
+        </p>
+
+        <figure class="viz">
+          <div class="anim">
+            <canvas id="soliton-canvas" role="img" aria-label="Animation of two solitons, one violet and one teal, moving toward each other along a line. They collide in the middle, bounce off each other and travel back in opposite directions. Below, a space-time plot traces their paths as the animation runs."></canvas>
+            <button type="button" class="anim-toggle" id="soliton-play">Pause</button>
+          </div>
+          <figcaption>
+            Two solitons, one in each component of a coupled nonlinear Schrödinger system (violet and
+            teal), travel toward each other, collide and bounce apart. The top panel shows the density
+            of each wave and the panel below traces their paths in space and time. Illustration
+            computed with a split-step Fourier method; the mass of each component is conserved to
+            10<sup>−12</sup>.
+          </figcaption>
+        </figure>
+
+        <p>
+          For my M.S. thesis with Paul Castillo, I developed field-directional splitting schemes that
+          update one component at a time while conserving the discrete mass of every component and
+          the discrete Hamiltonian exactly, and reach higher order in time through symmetric
+          composition. We extended them to fourth- and sixth-order explicit and compact finite
+          differences with general nonlinear couplings, and to two-dimensional coupled
+          Gross–Pitaevskii systems, where we proved convergence of order <i>τ</i> + <i>h</i><sup>2<i>p</i></sup>
+          in the thermodynamically stable regime and built energy-conserving schemes of order
+          <i>τ</i><sup>2<i>q</i></sup> + <i>h</i><sup>2<i>p</i></sup>.
+        </p>
+
+        <figure class="viz">
+          <div class="anim" data-video>
+            <video muted loop playsinline preload="metadata" poster="assets/img/research/bec-poster.jpg" width="1280" height="480" aria-label="Animation of two overlapping clouds, one teal and one violet, in a trap. They start mixed, break up into irregular domains, and settle with the teal cloud in the centre and the violet cloud forming a ring around it.">
+              <source src="assets/img/research/bec-demixing.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="anim-toggle">Pause</button>
+          </div>
+          <figcaption>
+            Two components of a Bose–Einstein condensate in a two-dimensional harmonic trap, with height
+            showing the density of each one. They start fully mixed, but the repulsion between them is
+            stronger than within each, so the mixture breaks up into domains that merge and settle with
+            one component in the centre (teal) and the other in a ring around it (violet). Illustration
+            computed with the coupled Gross–Pitaevskii equations, with a small damping term so the
+            system relaxes to its ground state.
+          </figcaption>
+        </figure>
+      </article>
+
+      <!-- ---------------- TLEs ---------------- -->
+      <article class="project">
+        <h3>Machine learning for lightning above thunderstorms</h3>
+        <p>
+          Transient luminous events are brief optical flashes in the upper atmosphere, triggered by
+          lightning in the thunderstorms below. They come in several forms, and their rapid, random
+          occurrence makes classifying the thousands of images collected by observers worldwide slow
+          and laborious.
+        </p>
+
+        <figure class="viz">
+          <svg class="tle" viewBox="0 0 640 380" role="img" aria-labelledby="tle-title tle-desc">
+            <title id="tle-title">Types of transient luminous events by altitude</title>
+            <desc id="tle-desc">A thunderstorm cloud up to about 15 km. A blue jet rises from the cloud top to about 40 km, a gigantic jet reaches about 90 km, red sprites appear between about 50 and 90 km, a halo glows near 80 km, and an elve forms a wide ring near 90 km.</desc>
+            <defs>
+              <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#121a2c"/>
+                <stop offset="100%" stop-color="#2a3550"/>
+              </linearGradient>
+              <linearGradient id="gj" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#5b8def"/>
+                <stop offset="70%" stop-color="#8f7ee8"/>
+                <stop offset="100%" stop-color="#e2574c"/>
+              </linearGradient>
+              <radialGradient id="halo-g" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ff6b5c" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#ff6b5c" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="1.6"/></filter>
+            </defs>
+            <rect width="640" height="380" fill="url(#night)" rx="6"/>
+            <!-- altitude axis: y = 340 - 3 * km -->
+            <g class="tle-axis">
+              <line x1="62" y1="40" x2="62" y2="340"/>
+              <g><line x1="58" y1="340" x2="62" y2="340"/><text x="52" y="344">0 km</text></g>
+              <g><line x1="58" y1="280" x2="62" y2="280"/><text x="52" y="284">20</text></g>
+              <g><line x1="58" y1="220" x2="62" y2="220"/><text x="52" y="224">40</text></g>
+              <g><line x1="58" y1="160" x2="62" y2="160"/><text x="52" y="164">60</text></g>
+              <g><line x1="58" y1="100" x2="62" y2="100"/><text x="52" y="104">80</text></g>
+              <g><line x1="58" y1="40" x2="62" y2="40"/><text x="52" y="44">100</text></g>
+            </g>
+            <!-- ground -->
+            <path d="M 0 340 H 640 V 374 a 6 6 0 0 1 -6 6 H 6 a 6 6 0 0 1 -6 -6 Z" fill="#0d1322"/>
+            <!-- elve: wide ring near 90 km -->
+            <ellipse cx="330" cy="70" rx="210" ry="9" fill="none" stroke="#ff6b5c" stroke-width="3" opacity="0.75" filter="url(#soft)"/>
+            <!-- halo near 80 km -->
+            <ellipse cx="300" cy="102" rx="62" ry="13" fill="url(#halo-g)"/>
+            <!-- sprites 50-90 km -->
+            <g filter="url(#soft)" stroke-linecap="round">
+              <path d="M 288 108 L 288 168" stroke="#ff6b5c" stroke-width="7"/>
+              <path d="M 302 104 L 304 172" stroke="#ff6b5c" stroke-width="9"/>
+              <path d="M 316 110 L 314 166" stroke="#ff6b5c" stroke-width="6"/>
+              <g stroke="#7d8cf0" stroke-width="2" fill="none">
+                <path d="M 288 168 l -8 18 m 8 -18 l 4 20"/>
+                <path d="M 304 172 l -6 22 m 6 -22 l 8 20 m -8 -20 l 0 24"/>
+                <path d="M 314 166 l 6 18 m -6 -18 l -4 22"/>
+              </g>
+            </g>
+            <!-- blue jet up to about 40 km -->
+            <path d="M 196 300 C 200 270 206 245 214 222 C 220 245 224 270 226 300 Z" fill="#5b8def" opacity="0.85" filter="url(#soft)"/>
+            <!-- gigantic jet up to about 90 km -->
+            <path d="M 420 300 C 418 240 414 170 404 120 C 398 96 384 80 376 72 M 404 120 C 410 96 424 82 434 74 M 412 180 C 420 160 432 150 440 146" fill="none" stroke="url(#gj)" stroke-width="7" stroke-linecap="round" filter="url(#soft)"/>
+            <!-- thunderstorm, top near 15 km -->
+            <path d="M 150 340 C 150 320 160 305 185 300 C 200 288 240 292 260 296 C 300 280 380 286 410 296 C 440 292 470 300 482 312 C 498 318 502 332 500 340 Z" fill="#c9d0db"/>
+            <path d="M 300 340 l 10 -18 l -8 0 l 12 -18" fill="none" stroke="#fff4c2" stroke-width="2"/>
+            <!-- labels -->
+            <g class="tle-label">
+              <text x="548" y="66">Elve</text>
+              <text x="230" y="107" text-anchor="end">Halo</text>
+              <text x="330" y="150">Sprites</text>
+              <text x="176" y="214">Blue jet</text>
+              <text x="446" y="140">Gigantic jet</text>
+              <text x="512" y="330">Thunderstorm</text>
+            </g>
+          </svg>
+          <figcaption>
+            The main kinds of transient luminous events and the altitudes where they occur, drawn
+            schematically above a thunderstorm.
+          </figcaption>
+        </figure>
+
+        <p>
+          In a NASA-supported project at the University of Puerto Rico at Mayagüez with Vidya Manian,
+          I built a workflow to preprocess and label TLE images contributed by observers around the
+          world, many from the Caribbean TLE observatory, covering seven classes: sprites, elves,
+          halos, sprite–halos, sprite–jellyfish, blue jets, and gigantic jets. After bilateral
+          filtering and augmentation by rotation, translation, and flipping, we compared a Vision
+          Transformer with four convolutional networks (ResNet50, ResNet18, GoogLeNet, and
+          SqueezeNet). With transfer learning, ResNet50 reached about 99% accuracy.
+        </p>
+        <!-- To show real TLE images, add your own figures from the Sensors article here, e.g.
+        <figure class="viz"><img src="assets/img/research/tle-examples.jpg" alt="..."><figcaption>...</figcaption></figure> -->
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========================== PUBLICATIONS ========================== -->
+  <section class="block" id="publications" aria-labelledby="pubs-h">
+    <h2 id="pubs-h">Publications</h2>
+    <div class="block-body">
+
+      <h3 class="list-title">Manuscript</h3>
+      <ol class="pubs">
+        <li>
+          <span class="pub-title">Batched self-consistent iteration for Gauss–Legendre and Hermite integration of Hamiltonian systems.</span>
+          <span class="pub-authors"><b>A. Aguilera</b>, X. Jiao, and C. Markakis.</span>
+          <span class="pub-venue">To be submitted to <i>Numerical Algorithms</i>, 2026.</span>
+        </li>
+      </ol>
+
+      <h3 class="list-title">Peer-reviewed journal articles</h3>
+      <ol class="pubs">
+        <li>
+          <span class="pub-title">Artificial intelligence approach for classifying images of upper-atmospheric transient luminous events.</span>
+          <span class="pub-authors"><b>A. Aguilera</b> and V. Manian.</span>
+          <span class="pub-venue"><i>Sensors</i> 24(10), 3208, 2024.</span>
+          <a class="doi" href="https://doi.org/10.3390/s24103208">doi:10.3390/s24103208</a>
+        </li>
+        <li>
+          <span class="pub-title">A conservative splitting high-order finite difference method for coupled Gross–Pitaevskii equations in 2D.</span>
+          <span class="pub-authors">P. Castillo, <b>A. Aguilera</b>, and J. Bermudez.</span>
+          <span class="pub-venue"><i>The European Physical Journal Plus</i> 138(9), 789, 2023.</span>
+          <a class="doi" href="https://doi.org/10.1140/epjp/s13360-023-04402-6">doi:10.1140/epjp/s13360-023-04402-6</a>
+        </li>
+        <li>
+          <span class="pub-title">Método conservativo de diferencias finitas de alto orden para una clase de sistemas de Schrödinger no lineales.</span>
+          <span class="pub-authors"><b>A. Aguilera</b>, P. Castillo, and S. Gómez.</span>
+          <span class="pub-venue"><i>Revista Mexicana de Física E</i> 19(1), 010205, 2022.</span>
+          <a class="doi" href="https://doi.org/10.31349/RevMexFisE.19.010205">doi:10.31349/RevMexFisE.19.010205</a>
+        </li>
+        <li>
+          <span class="pub-title">Structure preserving-field directional splitting difference methods for nonlinear Schrödinger systems.</span>
+          <span class="pub-authors"><b>A. Aguilera</b>, P. Castillo, and S. Gómez.</span>
+          <span class="pub-venue"><i>Applied Mathematics Letters</i> 119, 107211, 2021.</span>
+          <a class="doi" href="https://doi.org/10.1016/j.aml.2021.107211">doi:10.1016/j.aml.2021.107211</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================== EXPERIENCE =========================== -->
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <div class="block-body">
+
+      <h3 class="list-title">Industry</h3>
+      <dl class="timeline">
+        <dt>Aug–Sep 2026</dt>
+        <dd><b>Quantitative Research Mentorship Program</b>, JPMorganChase. Implemented and compared Black–Scholes, Monte Carlo, and binomial-tree option pricing, analyzing accuracy, convergence, and sensitivities. Developed an adaptive execution strategy from tick-level limit-order-book data and microstructure signals that reduced average simulated execution spread by about 26% against the benchmark.</dd>
+      </dl>
+
+      <figure class="viz viz-indent">
+        <img src="assets/img/industry/mc-paths.svg" alt="Sixty simulated stock price paths over one year, starting at 100. Paths that end above the strike price of 100 are violet; paths that end below it are teal." loading="lazy">
+        <img class="viz-second" src="assets/img/industry/pricing-convergence.svg" alt="Left: the binomial-tree price of a European call oscillates and converges to the Black–Scholes price as the number of steps grows. Right: the Monte Carlo estimate converges to the same price, with a 95% confidence band that narrows as the number of samples grows." loading="lazy">
+        <figcaption>
+          Pricing a one-year European call (spot and strike 100, 5% rate, 20% volatility). Top:
+          60 simulated price paths under geometric Brownian motion; violet paths finish above the
+          strike. Bottom: the binomial tree and Monte Carlo estimates converge to the Black–Scholes
+          price of 10.45. Illustration computed for this page.
+        </figcaption>
+      </figure>
+
+      <dl class="timeline">
+        <dt>Jun–Aug 2026</dt>
+        <dd><b>Quantitative Analytics Intern</b>, Capital Markets, Wells Fargo, Charlotte, NC. Built an interactive debugging framework for a traded-products risk and pricing platform that isolates anomalous valuation, P&amp;L, and sensitivity results by desk, book, trade, and metric, and a local calculation workflow for reproducible investigations without modifying production models.</dd>
+      </dl>
+
+      <h3 class="list-title">Teaching</h3>
+      <dl class="timeline">
+        <dt>2024–present</dt>
+        <dd><b>Graduate Teaching Assistant</b>, Stony Brook University. Differential Equations and Boundary Value Problems I, Applications of Complex Analysis, Numerical Analysis I, Analytical Methods.</dd>
+        <dt>2019–2022</dt>
+        <dd><b>Graduate Teaching Assistant</b>, University of Puerto Rico at Mayagüez. Precalculus and Calculus I.</dd>
+      </dl>
+
+      <h3 class="list-title">Technical skills</h3>
+      <p class="tools">C++, Python, Java, Eigen, OpenMP, oneTBB, CMake, Git, Linux, and HPC clusters. Spanish and English.</p>
+    </div>
+  </section>
+
+  <!-- ======================== TALKS AND AWARDS ======================== -->
+  <section class="block" id="talks" aria-labelledby="talks-h">
+    <h2 id="talks-h">Talks and awards</h2>
+    <div class="block-body">
+
+      <h3 class="list-title">Awards</h3>
+      <dl class="timeline">
+        <dt>2026</dt>
+        <dd><b>Best Student Presentation Award</b>, AMMCS 2026, Wilfrid Laurier University, Waterloo, Canada.</dd>
+        <dt>2026</dt>
+        <dd><b>IACS Travel Award</b>, Institute for Advanced Computational Science, Stony Brook University.</dd>
+        <dt>2022</dt>
+        <dd><b>First place, graduate poster session</b>, IPAM Latinx in the Mathematical Sciences Conference, UCLA.</dd>
+      </dl>
+
+      <h3 class="list-title">Selected talks</h3>
+      <dl class="timeline">
+        <dt>Aug 2026</dt>
+        <dd>Time-symmetric and symplectic parallel-in-time Gauss–Legendre and Hermite methods for Hamiltonian systems. AMMCS 2026, Waterloo, Canada.</dd>
+        <dt>Jun 2023</dt>
+        <dd>Conservative high-order finite difference method for the coupled nonlinear Schrödinger equation in 1D. CIMPA Research Summer School, Havana, Cuba.</dd>
+        <dt>Jul 2022</dt>
+        <dd>Conservative high-order finite difference method for systems of coupled nonlinear Schrödinger equations. Poster, IPAM Latinx in the Mathematical Sciences Conference, UCLA.</dd>
+        <dt>Mar 2022</dt>
+        <dd>Conservative method for the numerical approximation of nonlinear Schrödinger systems. Physics Department Colloquium, University of Puerto Rico at Mayagüez.</dd>
+        <dt>Aug 2021</dt>
+        <dd>Structure preserving-field directional splitting difference methods for nonlinear Schrödinger systems. Escuela Nacional de Optimización y Análisis Numérico, Mexico.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ======================== OUTSIDE RESEARCH ======================== -->
+  <section class="block" id="outside" aria-labelledby="outside-h">
+    <h2 id="outside-h">Outside research</h2>
+    <div class="block-body">
+      <p>
+        I like to travel, often around conferences and summer schools, and I am learning to play
+        electric guitar on a PRS SE CE 24.
+      </p>
+
+      <!-- ALBUMS. One <figure class="album"> per place. To add one:
+           1. Make a folder, e.g. assets/img/travel/my-trip/, with photos 01.jpg, 02.jpg, ...
+              (JPG, about 1600 px on the long side, under 500 KB each) and a cover.jpg (4:3, about 900 px wide).
+           2. Copy any album block below, change the folder, the caption (place, year), and the <li> lines.
+              The text inside <a> describes the photo for screen readers; data-caption is optional and is
+              shown under the photo in the viewer. The photo count is computed automatically. -->
+      <h3 class="list-title">Travel</h3>
+      <div class="gallery">
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/copan/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Copán Ruinas, Honduras</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/copan/01.jpg" data-caption="The Great Plaza">Grass plaza in front of a stepped Maya temple at Copán</a></li>
+            <li><a href="assets/img/travel/copan/02.jpg" data-caption="Replica of the Rosalila temple">Full-size red replica of a Maya temple decorated with masks, inside a museum</a></li>
+            <li><a href="assets/img/travel/copan/03.jpg" data-caption="Scarlet macaws, the national bird of Honduras">Two scarlet macaws and a green macaw perched on branches</a></li>
+            <li><a href="assets/img/travel/copan/04.jpg" data-caption="The Hieroglyphic Stairway">Carved stone stairway under a protective canopy, with a stela in front</a></li>
+            <li><a href="assets/img/travel/copan/05.jpg">Stone temple platform at the edge of a lawn, surrounded by tall trees</a></li>
+            <li><a href="assets/img/travel/copan/06.jpg">Round stone altar carved with Maya glyphs</a></li>
+            <li><a href="assets/img/travel/copan/07.jpg">Ruined stone structures and trees on a grassy slope</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/omoa/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>San Fernando Fortress, Omoa, Honduras</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/omoa/01.jpg">Stone walls and a corner watchtower of a colonial fortress under a blue sky</a></li>
+            <li><a href="assets/img/travel/omoa/02.jpg">Inner courtyard of the fortress with a row of old cannons on the grass</a></li>
+            <li><a href="assets/img/travel/omoa/03.jpg">Top of the fortress wall with a sentry box overlooking green lawns</a></li>
+            <li><a href="assets/img/travel/omoa/04.jpg">Stone path through an arched gate in the fortress walls</a></li>
+            <li><a href="assets/img/travel/omoa/05.jpg" data-caption="The Caribbean coast at Omoa">Caribbean coast with palm trees seen from a wooden veranda</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/puerto-rico/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Puerto Rico</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/puerto-rico/01.jpg">Sun setting over the ocean behind rocks and shrubs</a></li>
+            <li><a href="assets/img/travel/puerto-rico/02.jpg" data-caption="El Morro, Old San Juan">Grassy esplanade leading to a stone fort by the sea at sunset</a></li>
+            <li><a href="assets/img/travel/puerto-rico/03.jpg">Narrow waterfall falling into a pool between rocky, forested walls</a></li>
+            <li><a href="assets/img/travel/puerto-rico/04.jpg">Turquoise water between limestone cliffs on a sunny day</a></li>
+            <li><a href="assets/img/travel/puerto-rico/05.jpg" data-caption="Salt flats in Cabo Rojo">Pink salt flats under a deep blue sky</a></li>
+            <li><a href="assets/img/travel/puerto-rico/06.jpg">Calm lake with green hills and a tree in the foreground</a></li>
+            <li><a href="assets/img/travel/puerto-rico/07.jpg" data-caption="Tótem Telúrico, Old San Juan">Tall carved totem sculpture on a plaza against the sky</a></li>
+            <li><a href="assets/img/travel/puerto-rico/08.jpg">Golden sunset over a calm sea</a></li>
+            <li><a href="assets/img/travel/puerto-rico/09.jpg">Illuminated plaza with a fountain and a church at night</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/mexico/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Mexico City and Guanajuato, Mexico</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/mexico/01.jpg" data-caption="Trajineras in Xochimilco">Brightly painted wooden boats lined up along a canal</a></li>
+            <li><a href="assets/img/travel/mexico/02.jpg" data-caption="Pyramid of the Sun, Teotihuacan">Large stepped pyramid with visitors in front</a></li>
+            <li><a href="assets/img/travel/mexico/03.jpg" data-caption="Guanajuato">Colonial city with a pink stone church among green hills</a></li>
+            <li><a href="assets/img/travel/mexico/04.jpg" data-caption="Templo de La Valenciana">Baroque pink stone church with a bell tower under a blue sky</a></li>
+            <li><a href="assets/img/travel/mexico/05.jpg">Interior of a baroque church with a gilded altarpiece</a></li>
+            <li><a href="assets/img/travel/mexico/06.jpg">Street view of a hillside town from a rooftop</a></li>
+            <li><a href="assets/img/travel/mexico/07.jpg" data-caption="CIMAT, where I attended EMALCA">Sign of the Centro de Investigación en Matemáticas</a></li>
+            <li><a href="assets/img/travel/mexico/08.jpg">Table of cacao beans and clay bowls at a market</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/dominican-republic/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Santo Domingo, Dominican Republic</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/dominican-republic/01.jpg" data-caption="Los Tres Ojos">Green lagoon at the bottom of a forested sinkhole</a></li>
+            <li><a href="assets/img/travel/dominican-republic/02.jpg" data-caption="Los Tres Ojos">Cave opening with hanging roots framing a green lagoon</a></li>
+            <li><a href="assets/img/travel/dominican-republic/03.jpg">Plaza with a statue and colonial buildings at night</a></li>
+            <li><a href="assets/img/travel/dominican-republic/04.jpg">Street lined with colorful paintings for sale</a></li>
+            <li><a href="assets/img/travel/dominican-republic/05.jpg">Paintings of a dog in sunglasses and a woman in a headscarf</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/el-salvador/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>El Salvador</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/el-salvador/01.jpg" data-caption="Lake Coatepeque">Crater lake surrounded by green hills under clouds</a></li>
+            <li><a href="assets/img/travel/el-salvador/02.jpg">Jet ski crossing a wide lake below cloudy mountains</a></li>
+            <li><a href="assets/img/travel/el-salvador/03.jpg" data-caption="Izalco volcano">Cone-shaped volcano rising above green fields</a></li>
+            <li><a href="assets/img/travel/el-salvador/04.jpg">Sea of clouds over a valley, framed by pine trees</a></li>
+            <li><a href="assets/img/travel/el-salvador/05.jpg">Tree trunk painted with colorful patterns</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/cuba/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Havana and Viñales, Cuba</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/cuba/01.jpg" data-caption="Havana from across the bay">Havana skyline across the bay at sunset, seen from the fortress</a></li>
+            <li><a href="assets/img/travel/cuba/02.jpg">Pink classic convertible parked by the road near the sea</a></li>
+            <li><a href="assets/img/travel/cuba/03.jpg" data-caption="Viñales Valley">Green valley with limestone hills and palm trees</a></li>
+            <li><a href="assets/img/travel/cuba/04.jpg">Sun setting over the sea behind dark rocks</a></li>
+            <li><a href="assets/img/travel/cuba/05.jpg" data-caption="University of Havana">Neoclassical university buildings around a staircase and a statue</a></li>
+            <li><a href="assets/img/travel/cuba/06.jpg" data-caption="Plaza de San Francisco de Asís">Cobblestone square with a church tower and colonial buildings</a></li>
+            <li><a href="assets/img/travel/cuba/07.jpg" data-caption="El Capitolio">Domed neoclassical capitol building</a></li>
+            <li><a href="assets/img/travel/cuba/08.jpg">Stone fortress walls along the coast under a blue sky</a></li>
+            <li><a href="assets/img/travel/cuba/09.jpg" data-caption="Gran Teatro de La Habana">Ornate theater building illuminated at night</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/niagara/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Niagara Falls, Ontario, Canada</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/niagara/01.jpg" data-caption="Horseshoe Falls">Horseshoe-shaped waterfall with mist and a red tour boat</a></li>
+            <li><a href="assets/img/travel/niagara/02.jpg">Waterfall and river seen through green trees on a sunny day</a></li>
+            <li><a href="assets/img/travel/niagara/03.jpg">Wide waterfall beside a lawn, with a bridge in the distance</a></li>
+            <li><a href="assets/img/travel/niagara/04.jpg">Close view of falling water from the edge of the falls</a></li>
+            <li><a href="assets/img/travel/niagara/05.jpg">Curving waterfall with spray under dramatic clouds</a></li>
+            <li><a href="assets/img/travel/niagara/06.jpg">Churning water below the falls seen from a boat</a></li>
+            <li><a href="assets/img/travel/niagara/07.jpg">Gorge with waterfalls and green banks</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/new-york/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>New York City</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/new-york/01.jpg">Ferry crossing the harbor in front of the Manhattan skyline</a></li>
+            <li><a href="assets/img/travel/new-york/02.jpg" data-caption="Statue of Liberty">Statue of Liberty on its island seen from the water</a></li>
+            <li><a href="assets/img/travel/new-york/03.jpg" data-caption="Central Park">Twin-towered building reflected in a lake in Central Park</a></li>
+            <li><a href="assets/img/travel/new-york/04.jpg">Skyscrapers seen across a lake through trees</a></li>
+            <li><a href="assets/img/travel/new-york/05.jpg">Avenue leading to the Empire State Building</a></li>
+            <li><a href="assets/img/travel/new-york/06.jpg">Sun setting at the end of a city street between tall buildings</a></li>
+            <li><a href="assets/img/travel/new-york/07.jpg" data-caption="Times Square">Crowds under the bright screens of Times Square</a></li>
+            <li><a href="assets/img/travel/new-york/08.jpg" data-caption="Charging Bull">Bronze bull statue surrounded by visitors</a></li>
+            <li><a href="assets/img/travel/new-york/09.jpg" data-caption="American Museum of Natural History">Tyrannosaurus skeleton in a museum hall</a></li>
+          </ul>
+        </figure>
+        <figure class="photo album">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/travel/stony-brook/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>Stony Brook, New York</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/travel/stony-brook/01.jpg" data-caption="Stony Brook University in spring">Campus walkway with cherry blossoms and a fountain</a></li>
+            <li><a href="assets/img/travel/stony-brook/02.jpg">Pink cherry trees in bloom over a green lawn</a></li>
+            <li><a href="assets/img/travel/stony-brook/03.jpg">Calm harbor reflecting the sky and trees</a></li>
+            <li><a href="assets/img/travel/stony-brook/04.jpg">Lavender garden in front of university buildings</a></li>
+            <li><a href="assets/img/travel/stony-brook/05.jpg">Red autumn tree beside a campus path</a></li>
+            <li><a href="assets/img/travel/stony-brook/06.jpg">Large ring-shaped bronze sculpture on a plaza</a></li>
+            <li><a href="assets/img/travel/stony-brook/07.jpg">Campus plaza with a ring sculpture after snow</a></li>
+            <li><a href="assets/img/travel/stony-brook/08.jpg">Railway platform and tracks curving through trees</a></li>
+          </ul>
+        </figure>
+      </div>
+
+      <h3 class="list-title">Music</h3>
+      <div class="gallery">
+        <figure class="photo album photo-tall">
+          <button type="button" class="photo-frame album-cover">
+            <img src="assets/img/music/cover.jpg" alt="" loading="lazy">
+            <span class="album-count"></span>
+          </button>
+          <figcaption>My PRS SE CE 24 and practice amp</figcaption>
+          <ul class="album-items">
+            <li><a href="assets/img/music/01.jpg">Red PRS SE CE 24 electric guitar on a stand next to a small practice amplifier</a></li>
+          </ul>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CONTACT ============================ -->
+  <section class="block" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <div class="block-body">
+      <p class="contact-mail"><a href="#contact" class="js-mail" data-u="axi.aguilera" data-d="stonybrook.edu">axi [dot] aguilera [at] stonybrook [dot] edu</a></p>
+      <p class="address">
+        Department of Applied Mathematics and Statistics<br>
+        Stony Brook University<br>
+        Stony Brook, NY 11794, USA
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Last updated November 2026.</p>
+</footer>
+
+<script>
+  /* The address is assembled only when someone points at, focuses or taps a link,
+     so it never appears whole in the page source. */
+  document.querySelectorAll('.js-mail').forEach(function (a) {
+    function arm() { a.href = 'mailto:' + a.dataset.u + '@' + a.dataset.d; }
+    ['pointerenter', 'focus', 'touchstart'].forEach(function (ev) {
+      a.addEventListener(ev, arm, { once: true, passive: true });
+    });
+  });
+</script>
+<script src="assets/js/twobody.js"></script>
+<script src="assets/js/solitons.js"></script>
+<script src="assets/js/anim-video.js"></script>
+<script src="assets/js/gallery.js"></script>
+</body>
+</html>
